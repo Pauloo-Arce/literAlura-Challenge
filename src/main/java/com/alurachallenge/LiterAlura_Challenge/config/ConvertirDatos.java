@@ -1,0 +1,17 @@
+package com.alurachallenge.LiterAlura_Challenge.config;
+
+import com.alurachallenge.LiterAlura_Challenge.config.IConfig.IConvertirDatos;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class ConvertirDatos implements IConvertirDatos {
+    private final ObjectMapper objectMapper = new ObjectMapper();
+    @Override
+    public <T> T convertirDatosJson(String json, Class<T> clase) {
+        try {
+            return objectMapper.readValue(json, clase);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
